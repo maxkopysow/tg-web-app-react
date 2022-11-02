@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
 import React from 'react';
-import { useTelegram } from '../../hooks/useTelegram';
+import { useTelegram } from './hooks/useTelegram';
 import './Form.css';
 
 const Form = (props) => {
@@ -23,10 +23,10 @@ const Form = (props) => {
       setCompanyINN(e.target.value);
    }
    const onChangeEmail = (e) => {
-      setCompanyINN(e.target.value);
+      setCompanyEmail(e.target.value);
    }
    const onChangePhoneNumber = (e) => {
-      setCompanyINN(e.target.value);
+      setCompanyPhoneNumber(e.target.value);
    }
    return (
        <div className={'form'}>
