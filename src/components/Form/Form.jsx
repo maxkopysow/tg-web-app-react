@@ -23,10 +23,10 @@ const Form = (props) => {
       setCompanyINN(e.target.value);
    }
    const onChangeEmail = (e) => {
-      setCompanyEmail(e.target.value);
+      setEmail(e.target.value);
    }
    const onChangePhoneNumber = (e) => {
-      setCompanyPhoneNumber(e.target.value);
+      setPhoneNumber(e.target.value);
    }
    return (
        <div className={'form'}>
