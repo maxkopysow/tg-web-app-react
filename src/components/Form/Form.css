@@ -9,7 +9,7 @@
     width: 100%;
     padding: 10px;
     margin-top: 15px;
-    background: var(--tg-theme-button-color);
+    /* background: var(--tg-theme-button-color); */
     color: white;
 }
 
