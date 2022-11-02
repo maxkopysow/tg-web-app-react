@@ -11,6 +11,7 @@ function App() {
 
   useEffect(() => {
     tg.ready();
+    tg.MainButton.show();
   },[])
 
   

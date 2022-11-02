@@ -1,12 +1,9 @@
 /* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
-import React from 'react';
-import { useTelegram } from './hooks/useTelegram';
+import React, {useState} from 'react';
 import './Form.css';
 
-const Form = (props) => {
-   const {user} = useTelegram();
-    
+const Form = () => {
    const [FIO, setFIO] = useState('');
    const [companyName, setCompanyName] = useState('');
    const [companyINN, setCompanyINN] = useState('');
@@ -34,7 +31,7 @@ const Form = (props) => {
             <input 
                className={'input'} 
                type="text" 
-               placeholder={'ФИО'}
+               placeholder={'Фамилия имя отчество'}
                value={FIO}
                onChange = {onChangeFIO}
             />
@@ -55,14 +52,14 @@ const Form = (props) => {
             <input 
                className={'input'} 
                type="text" 
-               placeholder={'e-mail'}
+               placeholder={'Email'}
                value={email}
                onChange = {onChangeEmail}
             />
             <input 
                className={'input'} 
                type="text" 
-               placeholder={'номер телефона'}
+               placeholder={'Номер телефона'}
                value={phoneNumber}
                onChange = {onChangePhoneNumber}
             />

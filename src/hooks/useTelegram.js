@@ -1,8 +1,12 @@
+/* eslint-disable no-unused-vars */
 const tg = window.Telegram.WebApp;
 
 export function useTelegram(){
     const onClose = () =>{
         tg.close();
+      }
+      const onOpen = () =>{
+        tg.MainButton.show();
       }
       const onToggleButton = () =>{
         if(tg.MainButton.isVisible){
