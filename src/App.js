@@ -12,7 +12,7 @@ function App() {
   useEffect(() => {
     tg.ready();
     tg.MainButton.show();
-    tg.MainButton.text('Зарегистрироваться');
+    tg.MainButton.text ='Зарегистрироваться';
   },[])
 
   
