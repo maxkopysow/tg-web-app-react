@@ -6,10 +6,11 @@
 }
 
 .input{
-    position:center;
     width: 90%;
     padding: 10px;
     margin-top: 15px;
+    margin-left: 10px;
+    margin-right: 10px;
     /* background: var(--tg-theme-button-color); */
     
 }
