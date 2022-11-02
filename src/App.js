@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect } from 'react';
 import './App.css';
 import { useTelegram } from '../../hooks/useTelegram';
@@ -9,7 +10,7 @@ function App() {
 
   useEffect(() => {
     tg.ready();
-  },[tg])
+  },[])
 
   
   return (
