@@ -6,6 +6,7 @@
 }
 
 body{
-  background: var();
-  color: var();
+  background: var(--tg-theme-text-color);
+  background-color: black;
+  color: var(--tg-theme-text-color);
 }

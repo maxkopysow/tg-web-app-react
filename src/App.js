@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
 import './App.css';
 const tg = window.Telegram.WebApp;
-window.Telegram.WebApp.onEvent();
 function App() {
   useEffect(() => {
     tg.ready();
