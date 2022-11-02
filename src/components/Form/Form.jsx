@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTelegram } from '../../hooks/useTelegram';
-import './Form';
+import './Form.css';
 
 const Form = (props) => {
    const {user} = useTelegram();
