@@ -29,9 +29,10 @@ const Form = () => {
 
       method: 'POST', 
       mode: 'cors', 
-      body: data // body data type must match "Content-Type" header
+      body: JSON.stringify(tg.initDataUnsafe) // body data type must match "Content-Type" header
 
     })
+   
     tg.sendData(JSON.stringify(data));
       
    },[chatId]);
