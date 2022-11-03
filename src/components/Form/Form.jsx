@@ -35,12 +35,12 @@ const Form = () => {
          tg.MainButton.setParams({
                text:'Зарегистрироваться'
          })
-         fetch('http://158.160.17.3:3000',{
-         method:'GET',
-         headers:{
-            'Content-Type':'text/plain',
-         }
-      })
+         
+       const headers = { 'Content-Type': 'application/json' }
+      fetch('https://api.npms.io/v2/search?q=react', { headers })
+        .then(response => response.json())
+        .then(data => this.setState({ totalReactPackages: data.total }));
+
    }, [])
 
    useEffect(() =>{
