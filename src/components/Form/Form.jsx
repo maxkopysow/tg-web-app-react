@@ -20,7 +20,7 @@ const Form = () => {
       }
    
       fetch('http://localhost:3000/web-data', {  // Enter your IP address here
-      headers:{"Content-Type":"text"},
+      headers:{"Content-Type":"application/json"},
       method: 'POST', 
       mode: 'cors', 
       body: JSON.stringify(data) // body data type must match "Content-Type" header
