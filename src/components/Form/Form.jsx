@@ -24,13 +24,20 @@ const Form = () => {
          phoneNumber
       }
 
-      fetch('http://158.160.17.3:3000',{
-         method:'POST',
+      // fetch('http://158.160.17.3:3000/web-data',{
+      //    method:'POST',
+      //    headers:{
+      //       'Content-Type':'application/json',
+
+      //    },
+      //    body: JSON.stringify(data)
+      // })
+      /fetch('http://158.160.17.3:3000/',{
+         method:'GET',
          headers:{
             'Content-Type':'application/json',
 
-         },
-         body: JSON.stringify(data)
+         }
       })
    },[queryId,chatId, FIO, companyName, companyINN, email, phoneNumber ])
 
