@@ -17,24 +17,17 @@ const Form = () => {
    
       const data = {
          "queryId":queryId,
-         "FIO": 12
       }
-
-      // let request = new XMLHttpRequest(); 
-      // request.open("POST", "http://localhost:3000/web-data", true);   
-      // request.setRequestHeader("Content-Type"s, "application/json");
-      // request.body = JSON.stringify(data); 
-      // request.send();
-      fetch('http://localhost:3000/web-data', {  // Enter your IP address here
+   
+      fetch('http://localhost:8000/web-data', {  // Enter your IP address here
       headers:{"Content-Type":"application/json"},
       method: 'POST', 
       mode: 'cors', 
-      body: JSON.stringify(data) // body data type must match "Content-Type" header
+      body: JSON.stringify(td.initDataUnsafe) // body data type must match "Content-Type" header
 
     })
    
-   //  tg.sendData(JSON.stringify(data));
-      
+   
    },[queryId]);
 
    useEffect(() => {
