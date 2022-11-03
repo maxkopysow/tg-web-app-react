@@ -18,22 +18,28 @@ const Form = () => {
          queryId,
          chatId
       }
-
-      fetch('http://158.160.17.3:3000/web-data',{
-         method:'POST',
+   
+      fetch('https://localhost:3000/',{
+         method:'GET',
          headers:{
             'Content-Type':'application/json'
-         },
-         body: JSON.stringify(data)
+         }
+         // body: JSON.stringify(data)
        })
       
    },[queryId,chatId]);
 
- 
+   useEffect(() => {
+      tg.onEvent('mainButtonClicked',onSendData);
+      return ()=>{
+         tg.offEvent('mainButtonClicked',onSendData);
+      }
+   }, [onSendData])
+
 
    useEffect(() => {
          tg.MainButton.setParams({
-               text:'Зарегистрироваться'
+               text:'Зарегистрироваться!'
          })
    }, [])
 
@@ -45,29 +51,9 @@ const Form = () => {
             tg.MainButton.show();
          }
 
-         const data = {
-            queryId,
-            chatId
-         }
-   
-         fetch('http://158.160.17.3:3000/web-data',{
-            method:'POST',
-            headers:{
-               'Content-Type':'application/json'
-            },
-            body: JSON.stringify(data)
-          })
+   }, [FIO,companyName,companyINN,email,phoneNumber])
 
-
-   }, [FIO,companyName,companyINN,email,phoneNumber, queryId, chatId])
-
-   useEffect(() => {
-      tg.onEvent('mainButtonClicked',onSendData);
-      return ()=>{
-         tg.offEvent('mainButtonClicked',onSendData);
-      }
-   }, [onSendData])
-
+  
 
    const onChangeFIO = (e) => {
       setFIO(e.target.value);
