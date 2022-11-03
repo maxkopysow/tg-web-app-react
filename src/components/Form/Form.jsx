@@ -28,7 +28,7 @@ const Form = () => {
 
       method: 'POST', 
       mode: 'cors', 
-      body: JSON.stringify(data) // body data type must match "Content-Type" header
+      body: data // body data type must match "Content-Type" header
 
     })
       
@@ -78,7 +78,9 @@ const Form = () => {
    return (
        <div className={'form'}>
             <h3>Введите ваши данные</h3>
-            
+            <h3>{queryId}</h3>
+            <h3>{chatId}</h3>
+            <h3>{user}</h3>
            <div className="input-container">           
                <input 
                   className={'input'} 
