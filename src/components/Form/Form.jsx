@@ -20,12 +20,12 @@ const Form = () => {
    }, [])
 
    useEffect(() =>{
-      if(!FIO || !companyName || !companyINN
-         || !email || !phoneNumber){
-            tg.MainButton.hide();
-         }else{
+      // if(!FIO || !companyName || !companyINN
+      //    || !email || !phoneNumber){
+      //       tg.MainButton.hide();
+      //    }else{
             tg.MainButton.show();
-         }
+         //}
    }, [])
    const onChangeFIO = (e) => {
       setFIO(e.target.value);
