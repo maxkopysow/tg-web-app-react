@@ -46,41 +46,63 @@ const Form = () => {
    return (
        <div className={'form'}>
             <h3>Введите ваши данные</h3>
-            <input 
-               className={'input'} 
-               type="text" 
-               placeholder={'Фамилия имя отчество'}
-               value={FIO}
-               onChange = {onChangeFIO}
-            />
-            <input 
-               className={'input'} 
-               type="text" 
-               placeholder={'Наименование компании'}
-               value={companyName}
-               onChange = {onChangeCompanyName}
-            />
-          <input 
-               className={'input'} 
-               type="text" 
-               placeholder={'ИНН компании'}
-               value={companyINN}
-               onChange = {onChangeCompanyINN}
-            />
-            <input 
-               className={'input'} 
-               type="text" 
-               placeholder={'Email'}
-               value={email}
-               onChange = {onChangeEmail}
-            />
-            <input 
-               className={'input'} 
-               type="text" 
-               placeholder={'Номер телефона'}
-               value={phoneNumber}
-               onChange = {onChangePhoneNumber}
-            />
+            
+           <div className="input-container">           
+               <input 
+                  className={'input'} 
+                  type="text" 
+                  value={FIO}
+                  onChange = {onChangeFIO}
+               />
+               <label className={FIO && 'filled'}>
+                     {'ФИО'}
+               </label>
+            </div>
+
+            <div className="input-container">
+               <input 
+                  className={'input'} 
+                  type="text" 
+                  value={companyName}
+                  onChange = {onChangeCompanyName}
+               />
+               <label className={companyName && 'filled'}>
+                     {'Наименование компании'}
+               </label>
+            </div>
+            <div className="input-container">
+               <input 
+                     className={'input'} 
+                     type="text" 
+                     value={companyINN}
+                     onChange = {onChangeCompanyINN}
+                  />
+               <label className={companyINN && 'filled'}>
+                     {'ИНН компании'}
+               </label>
+            </div>
+            <div className="input-container">
+               <input 
+                  className={'input'} 
+                  type="text" 
+                  value={email}
+                  onChange = {onChangeEmail}
+               />
+               <label className={email && 'filled'}>
+                     {'Email'}
+               </label>
+            </div>
+            <div className="input-container">
+               <input 
+                  className={'input'} 
+                  type="text" 
+                  value={phoneNumber}
+                  onChange = {onChangePhoneNumber}
+               />
+               <label className={phoneNumber && 'filled'}>
+                     {'Номер телефона'}
+               </label>
+            </div>
        </div>
     );
 };
