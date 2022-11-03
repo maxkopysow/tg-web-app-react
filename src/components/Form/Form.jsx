@@ -16,8 +16,8 @@ const Form = () => {
    const onSendData = useCallback(()=>{
    
       const data = {
-         queryId,
-         
+         "queryId":queryId,
+         "FIO": 12
       }
 
       // let request = new XMLHttpRequest(); 
