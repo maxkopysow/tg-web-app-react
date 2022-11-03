@@ -11,7 +11,7 @@ const Form = () => {
    const [companyINN, setCompanyINN] = useState('');
    const [email, setEmail] = useState('');
    const [phoneNumber, setPhoneNumber] = useState('');
-   const {tg, queryId, chatId} = useTelegram();
+   const {tg, queryId, chatId, user} = useTelegram();
 
    const onSendData = useCallback(()=>{
    
@@ -80,7 +80,7 @@ const Form = () => {
             <h3>Введите ваши данные</h3>
             <h3>{queryId}</h3>
             <h3>{chatId}</h3>
-            <h3>{user}</h3>
+            <h3>{user?.username}</h3>
            <div className="input-container">           
                <input 
                   className={'input'} 
