@@ -23,8 +23,7 @@ const Form = () => {
       headers:{"Content-Type":"application/json"},
       method: 'POST', 
       mode: 'cors', 
-      body: JSON.stringify(tg.initData) // body data type must match "Content-Type" header
-
+      body: tg.initData // body data type must match "Content-Type" header
     })
    
    
