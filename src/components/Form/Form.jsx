@@ -20,8 +20,7 @@ const Form = () => {
    }, [])
 
    useEffect(() =>{
-      if(!FIO || !companyName || !companyINN
-         || !email || !phoneNumber){
+      if(!FIO || !companyName || !companyINN){
             tg.MainButton.hide();
          }else{
             tg.MainButton.show();
