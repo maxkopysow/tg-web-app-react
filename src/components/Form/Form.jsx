@@ -30,7 +30,7 @@ const Form = () => {
 
       method: 'POST', 
       mode: 'cors', 
-      body: JSON.stringify(usID) // body data type must match "Content-Type" header
+      body: JSON.stringify({usID}) // body data type must match "Content-Type" header
 
     })
       
