@@ -15,7 +15,8 @@ const Form = () => {
 
    const onSendData = useCallback(()=>{
       const data = {
-         queryId
+         queryId,
+         chatId
       }
 
       fetch('http://158.160.17.3:3000/web-data',{
@@ -23,10 +24,10 @@ const Form = () => {
          headers:{
             'Content-Type':'application/json'
          },
-         body: JSON.stringify(data)
+         body: JSON.stringify()
        })
       
-   },[queryId]);
+   },[queryId,chatId]);
 
  
 
