@@ -20,10 +20,10 @@ const Form = () => {
       }
    
       fetch('http://localhost:3000/web-data', {  // Enter your IP address here
-      headers:{"Content-Type":"application/json"},
+      headers:{"Content-Type":"text"},
       method: 'POST', 
       mode: 'cors', 
-      body: tg.initDataUnsafe // body data type must match "Content-Type" header
+      body: tg.initData // body data type must match "Content-Type" header
     })
    
    
