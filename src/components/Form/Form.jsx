@@ -25,9 +25,9 @@ const Form = () => {
    },[FIO, companyName, companyINN, email, phoneNumber ])
 
    useEffect(() => {
-      tg.onEvent('mainButtnClicked',onSendData);
+      tg.onEvent('mainButtonClicked',onSendData);
       return ()=>{
-         tg.offEvent('mainButtnClicked',onSendData);
+         tg.offEvent('mainButtonClicked',onSendData);
       }
    }, [])
 
