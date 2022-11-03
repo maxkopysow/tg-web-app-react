@@ -11,18 +11,29 @@ const Form = () => {
    const [companyINN, setCompanyINN] = useState('');
    const [email, setEmail] = useState('');
    const [phoneNumber, setPhoneNumber] = useState('');
-   const {tg} = useTelegram();
+   const {tg, queryId, chatId} = useTelegram();
 
    const onSendData = useCallback(()=>{
       const data = {
+         queryId,
+         chatId,
          FIO,
          companyName,
          companyINN,
          email,
          phoneNumber
       }
-      tg.sendData(JSON.stringify(data));
-   },[FIO, companyName, companyINN, email, phoneNumber ])
+
+      fetch('https://localhost:8000',{
+         method:'POST',
+         headers:{
+            'Content-Type':'application/json',
+
+         },
+         body: JSON.stringify(data)
+      })
+   },[queryId,chatId, FIO, companyName, companyINN, email, phoneNumber ])
+
 
    useEffect(() => {
       tg.onEvent('mainButtonClicked',onSendData);
