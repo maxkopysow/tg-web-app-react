@@ -19,13 +19,7 @@ const Form = () => {
          chatId
       }
    
-      fetch('https://localhost:3000/',{
-         method:'GET',
-         headers:{
-            'Content-Type':'application/json'
-         }
-         // body: JSON.stringify(data)
-       })
+      tg.MainButton.hide();
       
    },[queryId,chatId]);
 
