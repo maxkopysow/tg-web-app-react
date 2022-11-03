@@ -1,17 +1,15 @@
 .form{
     display :flex;
     flex-direction: column;
+    
     width: 100%;
     padding: 20;
+
 }
 
 .input{
-    width: 90%;
+    width: 100%;
     padding: 10px;
     margin-top: 15px;
-    margin-left: 10px;
-    margin-right: 10px;
-    /* background: var(--tg-theme-button-color); */
-    
 }
 

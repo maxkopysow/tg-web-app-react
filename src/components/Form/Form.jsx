@@ -1,6 +1,8 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
+import { useTelegram } from '../../hooks/useTelegram';
 import './Form.css';
 
 const Form = () => {
@@ -9,7 +11,22 @@ const Form = () => {
    const [companyINN, setCompanyINN] = useState('');
    const [email, setEmail] = useState('');
    const [phoneNumber, setPhoneNumber] = useState('');
-   
+   const {tg} = useTelegram();
+
+   useEffect(() => {
+         tg.MainButton.setParams({
+               text:'Зарегистрироваться'
+         })
+   }, [])
+
+   useEffect(() =>{
+      if(!FIO || !companyName || !companyINN
+         || !email || !phoneNumber){
+            tg.MainButton.hide();
+         }else{
+            tg.MainButton.show();
+         }
+   }, [])
    const onChangeFIO = (e) => {
       setFIO(e.target.value);
    }
@@ -42,7 +59,7 @@ const Form = () => {
                value={companyName}
                onChange = {onChangeCompanyName}
             />
-            <input 
+          <input 
                className={'input'} 
                type="text" 
                placeholder={'ИНН компании'}
