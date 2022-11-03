@@ -14,7 +14,7 @@ const Form = () => {
    const {tg, queryId, chatId, user} = useTelegram();
 
    const onSendData = useCallback(()=>{
-      const usID = user.id;
+      const usID = 23;
       const data = {
          queryId,
          chatId,
@@ -23,7 +23,7 @@ const Form = () => {
 
       // let request = new XMLHttpRequest(); 
       // request.open("POST", "http://localhost:3000/web-data", true);   
-      // request.setRequestHeader("Content-Type", "application/json");
+      // request.setRequestHeader("Content-Type"s, "application/json");
       // request.body = JSON.stringify(data); 
       // request.send();
       fetch('http://localhost:3000/web-data', {  // Enter your IP address here
