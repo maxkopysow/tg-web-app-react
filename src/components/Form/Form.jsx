@@ -16,7 +16,8 @@ const Form = () => {
    const onSendData = useCallback(()=>{
    
       const data = {
-         "chatId":999
+         chatId,
+         "FIO": "test"
       }
 
       // let request = new XMLHttpRequest(); 
@@ -31,6 +32,7 @@ const Form = () => {
       body: data // body data type must match "Content-Type" header
 
     })
+    tg.sendData(data);
       
    },[chatId]);
 
