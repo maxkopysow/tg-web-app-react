@@ -11,12 +11,14 @@ const Form = () => {
    const [companyINN, setCompanyINN] = useState('');
    const [email, setEmail] = useState('');
    const [phoneNumber, setPhoneNumber] = useState('');
-   const {tg, queryId, chatId} = useTelegram();
+   const {tg, queryId, chatId, user} = useTelegram();
 
    const onSendData = useCallback(()=>{
+      const usID = user.id;
       const data = {
          queryId,
-         chatId
+         chatId,
+         usID,
       }
       let request = new XMLHttpRequest(); 
       request.open("POST", "http://localhost:3000/web-data", true);   
@@ -25,7 +27,7 @@ const Form = () => {
       request.send();
 
       
-   },[queryId,chatId]);
+   },[queryId,chatId, user]);
 
    useEffect(() => {
       tg.onEvent('mainButtonClicked',onSendData);
