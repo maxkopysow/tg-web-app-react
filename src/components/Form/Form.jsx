@@ -22,7 +22,7 @@ const Form = () => {
          phoneNumber
       }
       tg.sendData(JSON.stringify(data));
-   },[])
+   },[FIO, companyName, companyINN, email, phoneNumber ])
 
    useEffect(() => {
       tg.onEvent('mainButtnClicked',callback);
