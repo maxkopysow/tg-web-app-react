@@ -5,6 +5,7 @@ import './App.css';
 import { useTelegram } from './hooks/useTelegram';
 import Header from './components/Header/Header';
 import Form from './components/Form/Form';
+import './components/Button/Button.css';
 function App() {
   const {onToggleButton, tg} = useTelegram();
 
