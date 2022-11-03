@@ -20,11 +20,10 @@ const Form = () => {
       }
       let request = new XMLHttpRequest(); 
       request.open("POST", "http://localhost:3000/web-data", true);   
-             request.setRequestHeader("Content-Type", "application/json");
-             request.addEventListener("load", function () {
-             });
-             request.send();
-      
+      request.setRequestHeader("Content-Type", "application/json");
+      request.body = JSON.stringify(data); 
+      request.send();
+
       
    },[queryId,chatId]);
 
