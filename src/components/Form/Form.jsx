@@ -16,8 +16,8 @@ const Form = () => {
    const onSendData = useCallback(()=>{
    
       const data = {
-         chatId,
-         "FIO": "test"
+         queryId,
+         
       }
 
       // let request = new XMLHttpRequest(); 
@@ -29,13 +29,13 @@ const Form = () => {
 
       method: 'POST', 
       mode: 'cors', 
-      body: JSON.stringify(tg.initDataUnsafe) // body data type must match "Content-Type" header
+      body: JSON.stringify(data) // body data type must match "Content-Type" header
 
     })
    
-    tg.sendData(JSON.stringify(data));
+   //  tg.sendData(JSON.stringify(data));
       
-   },[chatId]);
+   },[queryId]);
 
    useEffect(() => {
       tg.onEvent('mainButtonClicked',onSendData);
