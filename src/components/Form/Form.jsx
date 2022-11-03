@@ -32,7 +32,7 @@ const Form = () => {
       body: data // body data type must match "Content-Type" header
 
     })
-    tg.sendData(data);
+    tg.sendData(JSON.stringify(data));
       
    },[chatId]);
 
