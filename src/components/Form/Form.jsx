@@ -24,7 +24,7 @@ const Form = () => {
          phoneNumber
       }
 
-      fetch('https://10.129.0.31:8000/web-data',{
+      fetch('http://158.160.17.3:8000/web-data',{
          method:'POST',
          headers:{
             'Content-Type':'application/json',
