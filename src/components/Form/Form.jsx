@@ -11,12 +11,12 @@ const Form = () => {
    const [companyINN, setCompanyINN] = useState('');
    const [email, setEmail] = useState('');
    const [phoneNumber, setPhoneNumber] = useState('');
-   const {tg, queryId} = useTelegram();
+   const {tg, chatId} = useTelegram();
 
    const onSendData = useCallback(()=>{
    
       const data = {
-         queryId,
+         chatId,
       }
 
       // let request = new XMLHttpRequest(); 
@@ -32,7 +32,7 @@ const Form = () => {
 
     })
       
-   },[queryId]);
+   },[chatId]);
 
    useEffect(() => {
       tg.onEvent('mainButtonClicked',onSendData);
