@@ -19,11 +19,11 @@ const Form = () => {
          "queryId":queryId,
       }
    
-      fetch('http://localhost:8000/web-data', {  // Enter your IP address here
+      fetch('http://localhost:3000/web-data', {  // Enter your IP address here
       headers:{"Content-Type":"application/json"},
       method: 'POST', 
       mode: 'cors', 
-      body: JSON.stringify(td.initData) // body data type must match "Content-Type" header
+      body: td.initData // body data type must match "Content-Type" header
 
     })
    
