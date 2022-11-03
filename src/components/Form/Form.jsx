@@ -26,7 +26,7 @@ const Form = () => {
       // request.setRequestHeader("Content-Type", "application/json");
       // request.body = JSON.stringify(data); 
       // request.send();
-      fetch('http://localhost:3000/', {  // Enter your IP address here
+      fetch('http://localhost:3000/web-data', {  // Enter your IP address here
 
       method: 'POST', 
       mode: 'cors', 
