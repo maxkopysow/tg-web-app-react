@@ -20,13 +20,19 @@ const Form = () => {
          chatId,
          usID,
       }
-      
-      let request = new XMLHttpRequest(); 
-      request.open("POST", "http://localhost:3000/web-data", true);   
-      request.setRequestHeader("Content-Type", "application/json");
-      request.body = JSON.stringify(data); 
-      request.send();
 
+      // let request = new XMLHttpRequest(); 
+      // request.open("POST", "http://localhost:3000/web-data", true);   
+      // request.setRequestHeader("Content-Type", "application/json");
+      // request.body = JSON.stringify(data); 
+      // request.send();
+      fetch('http://localhost:3000/', {  // Enter your IP address here
+
+      method: 'POST', 
+      mode: 'cors', 
+      body: JSON.stringify(data) // body data type must match "Content-Type" header
+
+    })
       
    },[queryId,chatId, user]);
 
