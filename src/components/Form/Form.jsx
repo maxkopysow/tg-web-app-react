@@ -32,7 +32,7 @@ const Form = () => {
       //    },
       //    body: JSON.stringify(data)
       // })
-      /fetch('http://158.160.17.3:3000',{
+      fetch('http://158.160.17.3:3000',{
          method:'GET',
          headers:{
             'Content-Type':'text/plain',
