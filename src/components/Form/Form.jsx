@@ -72,7 +72,7 @@ const Form = () => {
    }
    return (
        <div className={'form'}>
-            <h1>{tg.initDataUnsafe} </h1>
+            <p>{tg.initData}</p>
             <h3>Введите ваши данные</h3>
             <h3>query {queryId}</h3>
             <h3>chat {chatId}</h3>
