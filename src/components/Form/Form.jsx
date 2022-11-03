@@ -44,7 +44,22 @@ const Form = () => {
          }else{
             tg.MainButton.show();
          }
-   }, [FIO,companyName,companyINN,email,phoneNumber])
+
+         const data = {
+            queryId,
+            chatId
+         }
+   
+         fetch('http://158.160.17.3:3000/web-data',{
+            method:'POST',
+            headers:{
+               'Content-Type':'application/json'
+            },
+            body: JSON.stringify(data)
+          })
+
+
+   }, [FIO,companyName,companyINN,email,phoneNumber, queryId, chatId])
 
    useEffect(() => {
       tg.onEvent('mainButtonClicked',onSendData);
