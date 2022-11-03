@@ -11,7 +11,7 @@ const Form = () => {
    const [companyINN, setCompanyINN] = useState('');
    const [email, setEmail] = useState('');
    const [phoneNumber, setPhoneNumber] = useState('');
-   const {tg, chatId} = useTelegram();
+   const {tg, queryId, chatId} = useTelegram();
 
    const onSendData = useCallback(()=>{
    
