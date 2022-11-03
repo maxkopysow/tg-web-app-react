@@ -16,7 +16,7 @@ const Form = () => {
    const onSendData = useCallback(()=>{
    
       const data = {
-         chatId,
+         "chatId":999
       }
 
       // let request = new XMLHttpRequest(); 
