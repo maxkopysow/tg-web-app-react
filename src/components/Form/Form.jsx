@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
-import React, {useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import { useTelegram } from '../../hooks/useTelegram';
 import './Form.css';
 
@@ -12,6 +12,24 @@ const Form = () => {
    const [email, setEmail] = useState('');
    const [phoneNumber, setPhoneNumber] = useState('');
    const {tg} = useTelegram();
+
+   const onSendData = useCallback(()=>{
+      const data = {
+         FIO,
+         companyName,
+         companyINN,
+         email,
+         phoneNumber
+      }
+      tg.sendData(JSON.stringify(data));
+   },[])
+
+   useEffect(() => {
+      tg.onEvent('mainButtnClicked',callback);
+      return ()=>{
+         tg.offEvent('mainButtnClicked',callback);
+      }
+   }, [])
 
    useEffect(() => {
          tg.MainButton.setParams({
