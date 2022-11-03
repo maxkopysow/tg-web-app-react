@@ -18,14 +18,13 @@ const Form = () => {
          queryId
       }
 
-      // fetch('http://158.160.17.3:3000/web-data',{
-      //    method:'POST',
-      //    headers:{
-      //       'Content-Type':'application/json',
-
-      //    },
-      //    body: JSON.stringify(data)
-      // // })
+      fetch('http://158.160.17.3:3000/web-data',{
+         method:'POST',
+         headers:{
+            'Content-Type':'application/json'
+         },
+         body: JSON.stringify(data)
+       })
       
    },[queryId]);
 
@@ -35,12 +34,6 @@ const Form = () => {
          tg.MainButton.setParams({
                text:'Зарегистрироваться'
          })
-         
-       const headers = { 'Content-Type': 'application/json' }
-      fetch('https://api.npms.io/v2/search?q=react', { headers })
-        .then(response => response.json())
-        .then(data => this.setState({ totalReactPackages: data.total }));
-
    }, [])
 
    useEffect(() =>{
