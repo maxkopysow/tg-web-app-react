@@ -1,11 +1,14 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
+import { Textbox, Radiobox, Checkbox, Select, Textarea } from 'react-inputs-validation';
+import 'react-inputs-validation/lib/react-inputs-validation.min.css';
 import React, {useCallback, useEffect, useState} from 'react';
 import { useTelegram } from '../../hooks/useTelegram';
 import './Form.css';
 
 const Form = () => {
+
    const [FIO, setFIO] = useState('');
    const [companyName, setCompanyName] = useState('');
    const [companyINN, setCompanyINN] = useState('');
@@ -39,7 +42,7 @@ const Form = () => {
 
    useEffect(() => {
          tg.MainButton.setParams({
-               text:'Зарегистрироваться!'
+               text:'Зарегистрироваться'
          })
    }, [])
 
@@ -53,9 +56,10 @@ const Form = () => {
 
    }, [FIO,companyName,companyINN,email,phoneNumber])
 
-  
+   
 
    const onChangeFIO = (e) => {
+      if(e.target.value)
       setFIO(e.target.value);
    }
    const onChangeCompanyName = (e) => {
@@ -77,7 +81,7 @@ const Form = () => {
             <h3>chat {chatId}</h3>
             <h3>{user?.username}</h3>
            <div className="input-container">           
-               <input 
+               <Textbox 
                   className={'input'} 
                   type="text" 
                   value={FIO}
