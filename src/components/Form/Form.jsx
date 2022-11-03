@@ -11,14 +11,12 @@ const Form = () => {
    const [companyINN, setCompanyINN] = useState('');
    const [email, setEmail] = useState('');
    const [phoneNumber, setPhoneNumber] = useState('');
-   const {tg, queryId, chatId, user} = useTelegram();
+   const {tg, queryId} = useTelegram();
 
    const onSendData = useCallback(()=>{
-      const usID = 23;
+   
       const data = {
          queryId,
-         chatId,
-         usID,
       }
 
       // let request = new XMLHttpRequest(); 
@@ -30,11 +28,11 @@ const Form = () => {
 
       method: 'POST', 
       mode: 'cors', 
-      body: JSON.stringify({usID}) // body data type must match "Content-Type" header
+      body: JSON.stringify(data) // body data type must match "Content-Type" header
 
     })
       
-   },[queryId,chatId, user]);
+   },[queryId]);
 
    useEffect(() => {
       tg.onEvent('mainButtonClicked',onSendData);
