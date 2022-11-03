@@ -15,13 +15,7 @@ const Form = () => {
 
    const onSendData = useCallback(()=>{
       const data = {
-         queryId,
-         chatId,
-         FIO,
-         companyName,
-         companyINN,
-         email,
-         phoneNumber
+         queryId
       }
 
       // fetch('http://158.160.17.3:3000/web-data',{
@@ -38,15 +32,9 @@ const Form = () => {
             'Content-Type':'text/plain',
          }
       })
-   },[queryId,chatId, FIO, companyName, companyINN, email, phoneNumber ])
+   },[queryId]);
 
 
-   useEffect(() => {
-      tg.onEvent('mainButtonClicked',onSendData);
-      return ()=>{
-         tg.offEvent('mainButtonClicked',onSendData);
-      }
-   }, [onSendData])
 
    useEffect(() => {
          tg.MainButton.setParams({
@@ -62,6 +50,14 @@ const Form = () => {
             tg.MainButton.show();
          }
    }, [FIO,companyName,companyINN,email,phoneNumber])
+
+   useEffect(() => {
+      tg.onEvent('mainButtonClicked',onSendData);
+      return ()=>{
+         tg.offEvent('mainButtonClicked',onSendData);
+      }
+   }, [onSendData])
+
 
    const onChangeFIO = (e) => {
       setFIO(e.target.value);
