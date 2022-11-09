@@ -22,7 +22,7 @@ const Form = () => {
          "queryId":queryId,
       }
    
-      fetch('http://localhost:3000/web-data', {  // Enter your IP address here
+      fetch('http://158.160.14.193:3000/web-data', {  // Enter your IP address here
       headers:{"Content-Type":"application/json"},
       method: 'POST', 
       mode: 'cors', 
