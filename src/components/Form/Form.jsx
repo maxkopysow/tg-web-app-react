@@ -152,9 +152,8 @@ const Form = () => {
        <div className={'form'}>
             <h3>Введите ваши данные</h3>
             <h3>query {queryId}</h3>
-            <h3>chat {chatId}</h3>
             <h3>{user?.username}</h3>
-           <div className="input-container">           
+           {/* <div className="input-container">           
               
                <Textbox
                   name='FIO' 
@@ -167,7 +166,7 @@ const Form = () => {
                <label className={FIO && 'filled'}>
                      {'ФИО'}
                </label>
-            </div>
+            </div> */}
 
             {/* <div className="input-container">
                <input 
