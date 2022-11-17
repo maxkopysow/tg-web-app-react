@@ -86,7 +86,7 @@ const useInput = (InitialValue, validations) => {
 const Form = () => {
    const email =  useInput('', {isEmpty:true , minLength:3, isEmail:true});
    const FIO =  useInput('', {isEmpty:true , minLength:3, isFIO:true});
-   queryId = 1;
+  const  queryId = 1;
 
 
    // const [phoneNumber, setPhoneNumber] = useState('');
