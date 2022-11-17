@@ -4,7 +4,7 @@
 import { Textbox, Radiobox, Checkbox, Select, Textarea } from 'react-inputs-validation';
 import 'react-inputs-validation/lib/react-inputs-validation.min.css';
 import React, {useCallback, useEffect, useState} from 'react';
-import { useTelegram, tg, user } from '../../hooks/useTelegram';
+import { useTelegram} from '../../hooks/useTelegram';
 import './Form.css';
 
 const useValidation =(value,validations) =>{
@@ -30,8 +30,7 @@ const useValidation =(value,validations) =>{
                value ? setEmpty(false): setEmpty(true)
                break;
             case 'isEmail':
-               // const re =/^(?=.{1,254}$)(?=.{1,64}@)[-!#$%&'*+/0-9=?A-Z^_`a-z{|}~]+(\.[-!#$%&'*+/0-9=?A-Z^_`a-z{|}~]+)*@[A-Za-z0-9]([A-Za-z0-9-]{0,61}[A-Za-z0-9])?(\.[A-Za-z0-9]([A-Za-z0-9-]{0,3}[A-Za-z0-9])?)*$/;
-               const re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+               const re =/^(?=.{1,254}$)(?=.{1,64}@)[-!#$%&'*+/0-9=?A-Z^_`a-z{|}~]+(\.[-!#$%&'*+/0-9=?A-Z^_`a-z{|}~]+)*@[A-Za-z0-9]([A-Za-z0-9-]{0,61}[A-Za-z0-9])?(\.[A-Za-z0-9]([A-Za-z0-9-]{0,64}[A-Za-z0-9])?)*$/;
                re.test(String(value).toLowerCase()) ? setEmailError(false) : setEmailError(true)
                break;
             case 'isFIO':
@@ -91,17 +90,15 @@ const useInput = (InitialValue, validations) => {
 
 
 const Form = () => {
-
    
-   
-   const email =  useInput('', {isEmpty:true , minLength:3, isEmail:true});
-   const FIO =  useInput('', {isEmpty:true , minLength:3, isFIO:true});
-   const  queryId = 1;
-
-
-   // const [phoneNumber, setPhoneNumber] = useState('');
-   // const {tg, queryId, chatId, user} = useTelegram();
-   const inputValues = [FIO, email];
+   const FIO =  useInput('', {isEmpty:true ,isFIO:true}); 
+   const email =  useInput('', {isEmpty:true ,isEmail:true});
+   const companyName = useInput('', {isEmpty:true, isCompanyName:true});
+   const companyINN = useInput('', {isEmpty:true, isCompanyINN:true});
+   const phoneNumber = useInput('', {isEmpty:true, isPhoneNumber:true});
+  
+   const {tg, queryId, chatId, user} = useTelegram();
+   const inputValues = [FIO, email, companyName,companyINN, phoneNumber];
    // const onSendData = useCallback(()=>{
    
    //    const data = {
@@ -117,17 +114,17 @@ const Form = () => {
    
    
    // },[queryId]);
-   // useEffect(() => {
-   //    tg.onEvent('mainButtonClicked',onSendData);
-   //    return ()=>{
-   //       tg.offEvent('mainButtonClicked',onSendData);
-   //    }
-   // }, [onSendData])
-   // useEffect(() => {
-   //       tg.MainButton.setParams({
-   //             text:'Зарегистрироваться'
-   //       })
-   // }, [])
+   useEffect(() => {
+      tg.onEvent('mainButtonClicked',onSendData);
+      return ()=>{
+         tg.offEvent('mainButtonClicked',onSendData);
+      }
+   }, [onSendData])
+   useEffect(() => {
+         tg.MainButton.setParams({
+               text:'Зарегистрироваться'
+         })
+   }, [])
 
 
 
@@ -140,91 +137,81 @@ const Form = () => {
       //       tg.MainButton.show();
       //    }
       for (const val in inputValues){
-         // if(!val.inputValid){
-         //    tg.MainButton.hide();
-         // }else{
-         //    tg.MainButton.show();
-         // }
+         if(!val.inputValid){
+            tg.MainButton.hide();
+            break;
+         }else{
+            tg.MainButton.show();
+         }
       }
    }, [inputValues])
-
-   
-
-
-
-
-   // const onChangeFIO = (e) => {
-   //    if(e.target.value)
-   //    setFIO(e.target.value);
-   // }
 
    return (
        <div className={'form'}>
             <h3>Введите ваши данные</h3>
             <h3>query {queryId}</h3>
             {/* <h3>{useTelegram.user?.username}</h3> */}
-           {/* <div className="input-container">           
-              
-               <Textbox
-                  name='FIO' 
-                  className={'input'} 
-                  type="text" 
-                  value={FIO.value}
-                  onChange = {e => FIO.onChange(e)}
-                  onBlur = {e => FIO.onBlur(e)}
-               />
-               <label className={FIO && 'filled'}>
-                     {'ФИО'}
-               </label>
-            </div> */}
-
-            {/* <div className="input-container">
-               <input 
-                  className={'input'} 
-                  type="text" 
-                  value={companyName}
-                  onChange = {onChangeCompanyName}
-               />
-               <label className={companyName && 'filled'}>
-                     {'Наименование компании'}
-               </label>
-            </div>
-            <div className="input-container">
-               <input 
-                     className={'input'} 
-                     type="text" 
-                     value={companyINN}
-                     onChange = {onChangeCompanyINN}
-                  />
-               <label className={companyINN && 'filled'}>
-                     {'ИНН компании'}
-               </label>
-            </div> */}
-            {(email.isDirty && email.emailError) && <div style={{color:'red'}}>{ email.emailErrorText}</div>}
-            {(email.isDirty && email.isEmpty) && <div style={{color:'red'}}>{email.isEmptyText}</div>}
-            
+            {(FIO.isDirty && FIO.FIOError) && <div style={{color:'red'}}>{ FIO.FIOErrorText}</div>}
+            {(FIO.isDirty && FIO.isEmpty) && <div style={{color:'red'}}>{FIO.isEmptyText}</div>}    
             <div className="input-container">
                <input 
                   className={'input'}
-                  placeholder = "Email" 
+                  placeholder = "Введите ФИО " 
+                  type="text" 
+                  onChange = {e => FIO.onChange(e)}
+                  onBlur = {e => FIO.onBlur(e)}
+                  value={FIO.value}  
+               />
+            </div>           
+            {(companyName.isDirty && companyName.companyNameError) && <div style={{color:'red'}}>{ companyName.companyNameErrorText}</div>}
+            {(companyName.isDirty && companyName.isEmpty) && <div style={{color:'red'}}>{companyName.isEmptyText}</div>}    
+            <div className="input-container">
+               <input 
+                  className={'input'}
+                  placeholder = "Введите название компании" 
+                  type="text" 
+                  onChange = {e => companyName.onChange(e)}
+                  onBlur = {e => companyName.onBlur(e)}
+                  value={companyName.value}  
+               />
+            </div>
+            {(companyINN.isDirty && companyINN.companyINNError) && <div style={{color:'red'}}>{ companyINN.companyINNErrorText}</div>}
+            {(companyINN.isDirty && companyINN.isEmpty) && <div style={{color:'red'}}>{companyINN.isEmptyText}</div>}    
+            <div className="input-container">
+               <input 
+                  className={'input'}
+                  placeholder = "Введите ИНН компании" 
+                  type="text" 
+                  onChange = {e => companyINN.onChange(e)}
+                  onBlur = {e => companyINN.onBlur(e)}
+                  value={companyINN.value}  
+               />
+            </div>
+            {(email.isDirty && email.emailError) && <div style={{color:'red'}}>{ email.emailErrorText}</div>}
+            {(email.isDirty && email.isEmpty) && <div style={{color:'red'}}>{email.isEmptyText}</div>}    
+            <div className="input-container">
+               <input 
+                  className={'input'}
+                  placeholder = "Введите email" 
                   type="text" 
                   onChange = {e => email.onChange(e)}
                   onBlur = {e => email.onBlur(e)}
-                  value={email.value}
-                  
+                  value={email.value}  
                />
             </div>
-            {/* <div className="input-container">
+            {(phoneNumber.isDirty && phoneNumber.phoneNumberError) && <div style={{color:'red'}}>{ email.phoneNumberErrorText}</div>}
+            {(phoneNumber.isDirty && phoneNumber.isEmpty) && <div style={{color:'red'}}>{phoneNumber.isEmptyText}</div>}    
+            <div className="input-container">
                <input 
-                  className={'input'} 
+                  className={'input'}
+                  placeholder = "Введите номер телефона" 
                   type="text" 
-                  value={phoneNumber}
-                  onChange = {onChangePhoneNumber}
+                  onChange = {e => phoneNumber.onChange(e)}
+                  onBlur = {e => phoneNumber.onBlur(e)}
+                  value={phoneNumber.value}  
                />
-               <label className={phoneNumber && 'filled'}>
-                     {'Номер телефона'}
-               </label>
-            </div> */}
+            </div>
+            
        </div>
     );
 };
