@@ -207,8 +207,8 @@ const Form = () => {
                   className={'input'}
                   placeholder = "Email" 
                   type="text" 
-                  onChange = {e => email.onChange(e)}
-                  onBlur = {e => email.onBlur(e)}
+                  onChange = {Element => email.onChange(Element)}
+                  onBlur = {Element => email.onBlur(Element)}
                   value={email.value}
                   
                />
