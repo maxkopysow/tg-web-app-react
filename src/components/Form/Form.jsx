@@ -14,8 +14,8 @@ const useValidation =(value,validations) =>{
   const [emailError, setEmailError] = useState(false);
   const [inputValid, setInputValid] = useState(false);
   const isEmptyText = "Поле не может быть пустым";
-  const minLengthErrorText = "Значение поля должно быть больше"+ validations[validation];
-  const maxLengthErrorText = "Значение поля должно быть меньше " + validations[validation];
+//   const minLengthErrorText = "Значение поля должно быть больше"+ validations[validation];
+//   const maxLengthErrorText = "Значение поля должно быть меньше " + validations[validation];
   const emailErrorText = "Некорректно введен email";
   useEffect(()=>{
       for(const validation in validations){
