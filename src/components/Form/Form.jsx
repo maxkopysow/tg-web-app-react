@@ -92,32 +92,32 @@ const Form = () => {
    // const [phoneNumber, setPhoneNumber] = useState('');
    // const {tg, queryId, chatId, user} = useTelegram();
    const inputValues = [FIO, email];
-   const onSendData = useCallback(()=>{
+   // const onSendData = useCallback(()=>{
    
-      const data = {
-         "queryId":queryId,
-      }
+   //    const data = {
+   //       "queryId":queryId,
+   //    }
    
-      fetch('http://158.160.14.193:3000/web-data', {  // Enter your IP address here
-      headers:{"Content-Type":"application/json"},
-      method: 'POST', 
-      mode: 'cors', 
-      body: JSON.stringify(data) // body data type must match "Content-Type" header
-    })
+   //    fetch('http://158.160.14.193:3000/web-data', {  // Enter your IP address here
+   //    headers:{"Content-Type":"application/json"},
+   //    method: 'POST', 
+   //    mode: 'cors', 
+   //    body: JSON.stringify(data) // body data type must match "Content-Type" header
+   //  })
    
    
-   },[queryId]);
-   useEffect(() => {
-      tg.onEvent('mainButtonClicked',onSendData);
-      return ()=>{
-         tg.offEvent('mainButtonClicked',onSendData);
-      }
-   }, [onSendData])
-   useEffect(() => {
-         tg.MainButton.setParams({
-               text:'Зарегистрироваться'
-         })
-   }, [])
+   // },[queryId]);
+   // useEffect(() => {
+   //    tg.onEvent('mainButtonClicked',onSendData);
+   //    return ()=>{
+   //       tg.offEvent('mainButtonClicked',onSendData);
+   //    }
+   // }, [onSendData])
+   // useEffect(() => {
+   //       tg.MainButton.setParams({
+   //             text:'Зарегистрироваться'
+   //       })
+   // }, [])
 
 
 
@@ -130,11 +130,11 @@ const Form = () => {
       //       tg.MainButton.show();
       //    }
       for (val in inputValues){
-         if(!val.inputValid){
-            tg.MainButton.hide();
-         }else{
-            tg.MainButton.show();
-         }
+         // if(!val.inputValid){
+         //    tg.MainButton.hide();
+         // }else{
+         //    tg.MainButton.show();
+         // }
       }
    }, [inputValues])
 
