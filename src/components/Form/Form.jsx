@@ -144,17 +144,17 @@ const Form = () => {
    
    
    // },[queryId]);
-   useEffect(() => {
-      tg.onEvent('mainButtonClicked',onSendData);
-      return ()=>{
-         tg.offEvent('mainButtonClicked',onSendData);
-      }
-   }, [onSendData])
-   useEffect(() => {
-         tg.MainButton.setParams({
-               text:'Зарегистрироваться'
-         })
-   }, [])
+   // useEffect(() => {
+   //    tg.onEvent('mainButtonClicked',onSendData);
+   //    return ()=>{
+   //       tg.offEvent('mainButtonClicked',onSendData);
+   //    }
+   // }, [onSendData])
+   // useEffect(() => {
+   //       tg.MainButton.setParams({
+   //             text:'Зарегистрироваться'
+   //       })
+   // }, [])
 
 
 
