@@ -12,11 +12,26 @@ const useValidation =(value,validations) =>{
   const [minLengthError, setMinLengthError] = useState(false);
   const [maxLengthError, setMaxLengthError] = useState(false);
   const [emailError, setEmailError] = useState(false);
+  const [FIOError, setFIOError] = useState(false);
+  const [companyNameError, setCompanyNameError] = useState(false);
+  const [companyINNError, setCompanyINNError] = useState(false);
+  const [phoneNumberError, setPhoneNumberError] = useState(false);
   const [inputValid, setInputValid] = useState(false);
+
   const isEmptyText = "Поле не может быть пустым";
-//   const minLengthErrorText = "Значение поля должно быть больше"+ validations[validation];
-//   const maxLengthErrorText = "Значение поля должно быть меньше " + validations[validation];
   const emailErrorText = "Некорректно введен email";
+  const FIOErrorText = "Некорректно введено ФИО";
+  const companyNameErrorText ="Некорректно введено название компании";
+  const companyINNErrorText = "";
+  const phoneNumberErrorText = "";
+  
+  
+  const regEmail =/^(?=.{1,254}$)(?=.{1,64}@)[-!#$%&'*+/0-9=?A-Z^_`a-z{|}~]+(\.[-!#$%&'*+/0-9=?A-Z^_`a-z{|}~]+)*@[A-Za-z0-9]([A-Za-z0-9-]{0,61}[A-Za-z0-9])?(\.[A-Za-z0-9]([A-Za-z0-9-]{0,64}[A-Za-z0-9])?)*$/;
+  const regFIO = /^[^*-]*$/;   
+  const regCompanyName = /^[^*-]*$/;   
+  const regINN = /^[\d+]{10,12}$/;
+  const regPhoneNumber = /^(\s*)?(\+)?([- _():=+]?\d[- _():=+]?){10,14}(\s*)?$/;
+  
   useEffect(()=>{
       for(const validation in validations){
           switch(validation){
@@ -30,11 +45,19 @@ const useValidation =(value,validations) =>{
                value ? setEmpty(false): setEmpty(true)
                break;
             case 'isEmail':
-               const re =/^(?=.{1,254}$)(?=.{1,64}@)[-!#$%&'*+/0-9=?A-Z^_`a-z{|}~]+(\.[-!#$%&'*+/0-9=?A-Z^_`a-z{|}~]+)*@[A-Za-z0-9]([A-Za-z0-9-]{0,61}[A-Za-z0-9])?(\.[A-Za-z0-9]([A-Za-z0-9-]{0,64}[A-Za-z0-9])?)*$/;
-               re.test(String(value).toLowerCase()) ? setEmailError(false) : setEmailError(true)
+               regEmail.test(String(value).toLowerCase()) ? setEmailError(false) : setEmailError(true)
                break;
             case 'isFIO':
-               value ? setEmpty(false): setEmpty(true)
+               regFIO.test(String(value)) ? setFIOError(false): setFIOError(true)
+               break;
+            case 'isCompanyName':
+               regCompanyName.test(String(value)) ? setCompanyNameError(false): setCompanyNameError(true)
+               break;
+            case 'isCompanyINN':
+               regINN.test(String(value)) ? setCompanyINNError(false): setCompanyINNError(true)
+               break;
+            case 'isPhoneNumber':
+               regPhoneNumber.test(String(value)) ? setPhoneNumberError(false): setPhoneNumberError(true)
                break;
              default:
                break;
@@ -54,14 +77,21 @@ const useValidation =(value,validations) =>{
 
 
    return {
+      inputValid,
       isEmpty,
       minLengthError,
       maxLengthError,
+      FIOError,
       emailError,
-      inputValid,
+      companyNameError,
+      companyINNError,
+      phoneNumberError,
+      FIOErrorText,
       isEmptyText,
       emailErrorText,
-      
+      companyNameErrorText,
+      companyINNErrorText,
+      phoneNumberErrorText,
    }
 }
 
