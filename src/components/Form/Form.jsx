@@ -70,11 +70,11 @@ const useInput = (InitialValue, validations) => {
    const [value,setValue] = useState(InitialValue);
    const [isDirty, setDirty] = useState(false);
    const valid =   useValidation(value,validations)
-   const onChange = () =>{
+   const onChange = (e) =>{
       setValue(e.target.value);
 
    } 
-   const onBlur = () =>{
+   const onBlur = (e) =>{
       setDirty(true);
       
    } 
@@ -207,8 +207,8 @@ const Form = () => {
                   className={'input'}
                   placeholder = "Email" 
                   type="text" 
-                  onChange = {Element => email.onChange(Element)}
-                  onBlur = {Element => email.onBlur(Element)}
+                  onChange = {e => email.onChange(e)}
+                  onBlur = {e => email.onBlur(e)}
                   value={email.value}
                   
                />
