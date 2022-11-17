@@ -8,11 +8,15 @@ import { useTelegram, tg, user } from '../../hooks/useTelegram';
 import './Form.css';
 
 const useValidation =(value,validations) =>{
-  const [isEmpty, setEmpty] = useState(true);
+  const [isEmpty,setEmpty] = useState(true);
   const [minLengthError, setMinLengthError] = useState(false);
   const [maxLengthError, setMaxLengthError] = useState(false);
   const [emailError, setEmailError] = useState(false);
   const [inputValid, setInputValid] = useState(false);
+  const isEmptyText = "Поле не может быть пустым";
+  const minLengthErrorText = "Значение поля должно быть больше"+ validations[validation];
+  const maxLengthErrorText = "Значение поля должно быть меньше " + validations[validation];
+  const emailErrorText = "Некорректно введен email";
   useEffect(()=>{
       for(const validation in validations){
           switch(validation){
@@ -55,6 +59,10 @@ const useValidation =(value,validations) =>{
       maxLengthError,
       emailError,
       inputValid,
+      isEmptyText,
+      minLengthErrorText,
+      maxLengthErrorText,
+      emailErrorText,
       
    }
 }
@@ -84,9 +92,12 @@ const useInput = (InitialValue, validations) => {
 
 
 const Form = () => {
+
+   
+   
    const email =  useInput('', {isEmpty:true , minLength:3, isEmail:true});
    const FIO =  useInput('', {isEmpty:true , minLength:3, isFIO:true});
-  const  queryId = 1;
+   const  queryId = 1;
 
 
    // const [phoneNumber, setPhoneNumber] = useState('');
@@ -190,17 +201,18 @@ const Form = () => {
                      {'ИНН компании'}
                </label>
             </div> */}
+            {(email.isDirty && email.emailError) && <div style={{color:'red'}}> email.emailErrorText</div>}
+            {(email.isDirty && email.isEmpty) && <div style={{color:'red'}}>email.isEmptyText</div>}
+            
             <div className="input-container">
                <input 
-                  className={'input'} 
+                  className={'input'}
+                  placeholder = "Email" 
                   type="text" 
                   value={email.value}
                   onChange = {e => email.onChange(e)}
                   onBlur = {e => email.onBlur(e)}
                />
-               <label className={email && 'filled'}>
-                     {'Email'}
-               </label>
             </div>
             {/* <div className="input-container">
                <input 
