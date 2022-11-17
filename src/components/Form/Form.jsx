@@ -4,7 +4,7 @@
 import { Textbox, Radiobox, Checkbox, Select, Textarea } from 'react-inputs-validation';
 import 'react-inputs-validation/lib/react-inputs-validation.min.css';
 import React, {useCallback, useEffect, useState} from 'react';
-import { useTelegram } from '../../hooks/useTelegram';
+import { useTelegram, tg, user } from '../../hooks/useTelegram';
 import './Form.css';
 
 const useValidation =(value,validations) =>{
