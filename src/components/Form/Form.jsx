@@ -164,7 +164,7 @@ const Form = () => {
       }else{
          tg.MainButton.show();
       }
-   }, [inputValid])
+   }, [email])
 
    return (
        <div className={'form'}>
