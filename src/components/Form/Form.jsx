@@ -7,15 +7,91 @@ import React, {useCallback, useEffect, useState} from 'react';
 import { useTelegram } from '../../hooks/useTelegram';
 import './Form.css';
 
+const useValidation =(value,validations) =>{
+  const [isEmpty, setEmpty] = useState(true);
+  const [minLengthError, setMinLengthError] = useState(false);
+  const [maxLengthError, setMaxLengthError] = useState(false);
+  const [emailError, setEmailError] = useState(false);
+  const [inputValid, setInputValid] = useState(false);
+  useEffect(()=>{
+      for(const validation in validations){
+          switch(validation){
+            case 'minLength':
+               value.length < validations[validation] ? setMinLengthError(true): setMinLengthError(false)
+               break;
+            case 'maxLength':
+               value.length > validations[validation] ? setMaxLengthError(true): setMaxLengthError(false)
+               break;
+            case 'isEmpty':
+               value ? setEmpty(false): setEmpty(true)
+               break;
+            case 'isEmail':
+               const re =/^(?=.{1,254}$)(?=.{1,64}@)[-!#$%&'*+/0-9=?A-Z^_`a-z{|}~]+(\.[-!#$%&'*+/0-9=?A-Z^_`a-z{|}~]+)*@[A-Za-z0-9]([A-Za-z0-9-]{0,61}[A-Za-z0-9])?(\.[A-Za-z0-9]([A-Za-z0-9-]{0,61}[A-Za-z0-9])?)*$/;
+               re.test(String(value).toLowerCase()) ? setEmailError(false) : setEmailError(true)
+               break;
+            case 'isFIO':
+               value ? setEmpty(false): setEmpty(true)
+               break;
+             default:
+               break;
+         }
+      }
+
+   },[value])
+   
+   useEffect ( ()=>{
+      if(isEmpty || maxLengthError || minLengthError || emailError){
+         setInputValid(false);
+      }else{
+         setInputValid(true);
+      }
+
+   },[isEmpty, maxLengthError,minLengthError,emailError])
+
+
+   return {
+      isEmpty,
+      minLengthError,
+      maxLengthError,
+      emailError,
+      inputValid,
+      
+   }
+}
+
+
+const useInput = (InitialValue, validations) => {
+   const [value,setValue] = useState(InitialValue);
+   const [isDirty, setDirty] = useState(false);
+   const valid =   useValidation(value,validations)
+   const onChange = () =>{
+      setValue(e.target.value);
+
+   } 
+   const onBlur = () =>{
+      setDirty(true);
+      
+   } 
+   return {
+      value,
+      onChange,
+      onBlur,
+      isDirty,
+      ...valid
+   }
+}
+
+
+
 const Form = () => {
 
-   const [FIO, setFIO] = useState('');
-   const [companyName, setCompanyName] = useState('');
-   const [companyINN, setCompanyINN] = useState('');
-   const [email, setEmail] = useState('');
-   const [phoneNumber, setPhoneNumber] = useState('');
-   const {tg, queryId, chatId, user} = useTelegram();
-
+   const [FIO, setFIO] = useState('', {isEmpty:true , minLength:3, isFIO:true});
+   // const [companyName, setCompanyName] = useState('');
+   // const [companyINN, setCompanyINN] = useState('');
+   const [email, setEmail] = useState('',{isEmpty:true , minLength:3, isEmail:true});
+   // const [phoneNumber, setPhoneNumber] = useState('');
+   // const {tg, queryId, chatId, user} = useTelegram();
+   const inputValues = [FIO, email];
    const onSendData = useCallback(()=>{
    
       const data = {
@@ -31,49 +107,58 @@ const Form = () => {
    
    
    },[queryId]);
-
    useEffect(() => {
       tg.onEvent('mainButtonClicked',onSendData);
       return ()=>{
          tg.offEvent('mainButtonClicked',onSendData);
       }
    }, [onSendData])
-
-
    useEffect(() => {
          tg.MainButton.setParams({
                text:'Зарегистрироваться'
          })
    }, [])
 
+
+
+
    useEffect(() =>{
-      if(!FIO || !companyName || !companyINN
-      || !email || !phoneNumber){
+      // if(!FIO.inputValid || !companyName || !companyINN
+      // || !email || !phoneNumber){
+      //       tg.MainButton.hide();
+      //    }else{
+      //       tg.MainButton.show();
+      //    }
+      for (val in inputValues){
+         if(!val.inputValid){
             tg.MainButton.hide();
          }else{
             tg.MainButton.show();
          }
-
-   }, [FIO,companyName,companyINN,email,phoneNumber])
+      }
+   }, [FIO,companyName,companyINN,email,phoneNumber, inputValues])
 
    
 
-   const onChangeFIO = (e) => {
-      if(e.target.value)
-      setFIO(e.target.value);
-   }
-   const onChangeCompanyName = (e) => {
-      setCompanyName(e.target.value);
-   }
-   const onChangeCompanyINN = (e) => {
-      setCompanyINN(e.target.value);
-   }
-   const onChangeEmail = (e) => {
-      setEmail(e.target.value);
-   }
-   const onChangePhoneNumber = (e) => {
-      setPhoneNumber(e.target.value);
-   }
+
+
+
+   // const onChangeFIO = (e) => {
+   //    if(e.target.value)
+   //    setFIO(e.target.value);
+   // }
+   // const onChangeCompanyName = (e) => {
+   //    setCompanyName(e.target.value);
+   // }
+   // const onChangeCompanyINN = (e) => {
+   //    setCompanyINN(e.target.value);
+   // }
+   // const onChangeEmail = (e) => {
+   //    setEmail(e.target.value);
+   // }
+   // const onChangePhoneNumber = (e) => {
+   //    setPhoneNumber(e.target.value);
+   // }
    return (
        <div className={'form'}>
             <h3>Введите ваши данные</h3>
@@ -81,18 +166,21 @@ const Form = () => {
             <h3>chat {chatId}</h3>
             <h3>{user?.username}</h3>
            <div className="input-container">           
-               <Textbox 
+              
+               <Textbox
+                  name='FIO' 
                   className={'input'} 
                   type="text" 
-                  value={FIO}
-                  onChange = {onChangeFIO}
+                  value={FIO.value}
+                  onChange = {e => FIO.onChange(e)}
+                  onBlur = {e => FIO.onBlur(e)}
                />
                <label className={FIO && 'filled'}>
                      {'ФИО'}
                </label>
             </div>
 
-            <div className="input-container">
+            {/* <div className="input-container">
                <input 
                   className={'input'} 
                   type="text" 
@@ -113,19 +201,20 @@ const Form = () => {
                <label className={companyINN && 'filled'}>
                      {'ИНН компании'}
                </label>
-            </div>
+            </div> */}
             <div className="input-container">
                <input 
                   className={'input'} 
                   type="text" 
-                  value={email}
-                  onChange = {onChangeEmail}
+                  value={email.value}
+                  onChange = {e => email.onChange(e)}
+                  onBlur = {e => email.onBlur(e)}
                />
                <label className={email && 'filled'}>
                      {'Email'}
                </label>
             </div>
-            <div className="input-container">
+            {/* <div className="input-container">
                <input 
                   className={'input'} 
                   type="text" 
@@ -135,7 +224,7 @@ const Form = () => {
                <label className={phoneNumber && 'filled'}>
                      {'Номер телефона'}
                </label>
-            </div>
+            </div> */}
        </div>
     );
 };
