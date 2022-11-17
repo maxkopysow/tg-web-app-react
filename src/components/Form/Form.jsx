@@ -30,7 +30,7 @@ const useValidation =(value,validations) =>{
                value ? setEmpty(false): setEmpty(true)
                break;
             case 'isEmail':
-               const re =/^(?=.{1,254}$)(?=.{1,64}@)[-!#$%&'*+/0-9=?A-Z^_`a-z{|}~]+(\.[-!#$%&'*+/0-9=?A-Z^_`a-z{|}~]+)*@[A-Za-z0-9]([A-Za-z0-9-]{0,61}[A-Za-z0-9])?(\.[A-Za-z0-9]([A-Za-z0-9-]{0,61}[A-Za-z0-9])?)*$/;
+               const re =/^(?=.{1,254}$)(?=.{1,64}@)[-!#$%&'*+/0-9=?A-Z^_`a-z{|}~]+(\.[-!#$%&'*+/0-9=?A-Z^_`a-z{|}~]+)*@[A-Za-z0-9]([A-Za-z0-9-]{0,61}[A-Za-z0-9])?(\.[A-Za-z0-9]([A-Za-z0-9-]{0,3}[A-Za-z0-9])?)*$/;
                re.test(String(value).toLowerCase()) ? setEmailError(false) : setEmailError(true)
                break;
             case 'isFIO':
@@ -199,8 +199,8 @@ const Form = () => {
                      {'ИНН компании'}
                </label>
             </div> */}
-            {(email.isDirty && email.emailError) && <div style={{color:'red'}}> email.emailErrorText</div>}
-            {(email.isDirty && email.isEmpty) && <div style={{color:'red'}}>email.isEmptyText</div>}
+            {(email.isDirty && email.emailError) && <div style={{color:'red'}}>{ email.emailErrorText}</div>}
+            {(email.isDirty && email.isEmpty) && <div style={{color:'red'}}>{email.isEmptyText}</div>}
             
             <div className="input-container">
                <input 
