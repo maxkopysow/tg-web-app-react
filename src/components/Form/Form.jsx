@@ -152,7 +152,7 @@ const Form = () => {
        <div className={'form'}>
             <h3>Введите ваши данные</h3>
             <h3>query {queryId}</h3>
-            <h3>{user?.username}</h3>
+            {/* <h3>{useTelegram.user?.username}</h3> */}
            {/* <div className="input-container">           
               
                <Textbox
