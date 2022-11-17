@@ -127,7 +127,7 @@ const Form = () => {
    const phoneNumber = useInput('', {isEmpty:true, isPhoneNumber:true});
   
    const {tg, queryId, chatId, user} = useTelegram();
-   const inputValues = [FIO, email, companyName,companyINN, phoneNumber];
+   const valid = email.inputValid;
    // const onSendData = useCallback(()=>{
    
    //    const data = {
@@ -159,7 +159,7 @@ const Form = () => {
 
 
    useEffect(() =>{
-      if(!inputValid){
+      if(!email.inputValid){
          tg.MainButton.hide();
       }else{
          tg.MainButton.show();
