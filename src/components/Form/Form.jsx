@@ -129,7 +129,7 @@ const Form = () => {
       //    }else{
       //       tg.MainButton.show();
       //    }
-      for (val in inputValues){
+      for (const val in inputValues){
          // if(!val.inputValid){
          //    tg.MainButton.hide();
          // }else{
