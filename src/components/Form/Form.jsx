@@ -23,7 +23,7 @@ const useValidation =(value,validations) =>{
   const FIOErrorText = "Некорректно введено ФИО";
   const companyNameErrorText ="Некорректно введено название компании";
   const companyINNErrorText = "Некорректно введен ИНН";
-  const phoneNumberErrorText = "Некорректно введен ИНН";;
+  const phoneNumberErrorText = "Некорректно введен номер телефона";;
   
   
   const regEmail =/^(?=.{1,254}$)(?=.{1,64}@)[-!#$%&'*+/0-9=?A-Z^_`a-z{|}~]+(\.[-!#$%&'*+/0-9=?A-Z^_`a-z{|}~]+)*@[A-Za-z0-9]([A-Za-z0-9-]{0,61}[A-Za-z0-9])?(\.[A-Za-z0-9]([A-Za-z0-9-]{0,64}[A-Za-z0-9])?)*$/;
@@ -67,7 +67,7 @@ const useValidation =(value,validations) =>{
    },[value])
    
    useEffect ( ()=>{
-      if(isEmpty || maxLengthError || minLengthError || emailError){
+      if(isEmpty || emailError){
          setInputValid(false);
       }else{
          setInputValid(true);
@@ -159,12 +159,6 @@ const Form = () => {
 
 
    useEffect(() =>{
-      // if(!FIO.inputValid || !companyName || !companyINN
-      // || !email || !phoneNumber){
-      //       tg.MainButton.hide();
-      //    }else{
-      //       tg.MainButton.show();
-      //    }
       for (const val in inputValues){
          if(!val.inputValid){
             tg.MainButton.hide();
@@ -180,8 +174,6 @@ const Form = () => {
             <h3>Введите ваши данные</h3>
             <h3>query {queryId}</h3>
             {/* <h3>{useTelegram.user?.username}</h3> */}
-            {(FIO.isDirty && FIO.FIOError) && <div style={{color:'red'}}>{ FIO.FIOErrorText}</div>}
-            {(FIO.isDirty && FIO.isEmpty) && <div style={{color:'red'}}>{FIO.isEmptyText}</div>}    
             <div className="input-container">
                <input 
                   className={'input'}
@@ -191,10 +183,11 @@ const Form = () => {
                   onBlur = {e => FIO.onBlur(e)}
                   value={FIO.value}  
                />
-            </div>           
-            {(companyName.isDirty && companyName.companyNameError) && <div style={{color:'red'}}>{ companyName.companyNameErrorText}</div>}
-            {(companyName.isDirty && companyName.isEmpty) && <div style={{color:'red'}}>{companyName.isEmptyText}</div>}    
-            <div className="input-container">
+            </div>  
+            {(FIO.isDirty && FIO.FIOError) && <div style={{color:'red'}}>{ FIO.FIOErrorText}</div>}
+            {(FIO.isDirty && FIO.isEmpty) && <div style={{color:'red'}}>{FIO.isEmptyText}</div>}    
+                     
+             <div className="input-container">
                <input 
                   className={'input'}
                   placeholder = "Введите название компании" 
@@ -204,8 +197,9 @@ const Form = () => {
                   value={companyName.value}  
                />
             </div>
-            {(companyINN.isDirty && companyINN.companyINNError) && <div style={{color:'red'}}>{ companyINN.companyINNErrorText}</div>}
-            {(companyINN.isDirty && companyINN.isEmpty) && <div style={{color:'red'}}>{companyINN.isEmptyText}</div>}    
+            {(companyName.isDirty && companyName.companyNameError) && <div style={{color:'red'}}>{ companyName.companyNameErrorText}</div>}
+            {(companyName.isDirty && companyName.isEmpty) && <div style={{color:'red'}}>{companyName.isEmptyText}</div>}    
+           
             <div className="input-container">
                <input 
                   className={'input'}
@@ -216,8 +210,8 @@ const Form = () => {
                   value={companyINN.value}  
                />
             </div>
-            {(email.isDirty && email.emailError) && <div style={{color:'red'}}>{ email.emailErrorText}</div>}
-            {(email.isDirty && email.isEmpty) && <div style={{color:'red'}}>{email.isEmptyText}</div>}    
+            {(companyINN.isDirty && companyINN.companyINNError) && <div style={{color:'red'}}>{ companyINN.companyINNErrorText}</div>}
+            {(companyINN.isDirty && companyINN.isEmpty) && <div style={{color:'red'}}>{companyINN.isEmptyText}</div>}    
             <div className="input-container">
                <input 
                   className={'input'}
@@ -228,8 +222,8 @@ const Form = () => {
                   value={email.value}  
                />
             </div>
-            {(phoneNumber.isDirty && phoneNumber.phoneNumberError) && <div style={{color:'red'}}>{ email.phoneNumberErrorText}</div>}
-            {(phoneNumber.isDirty && phoneNumber.isEmpty) && <div style={{color:'red'}}>{phoneNumber.isEmptyText}</div>}    
+            {(email.isDirty && email.emailError) && <div style={{color:'red'}}>{ email.emailErrorText}</div>}
+            {(email.isDirty && email.isEmpty) && <div style={{color:'red'}}>{email.isEmptyText}</div>}    
             <div className="input-container">
                <input 
                   className={'input'}
@@ -240,6 +234,8 @@ const Form = () => {
                   value={phoneNumber.value}  
                />
             </div>
+            {(phoneNumber.isDirty && phoneNumber.phoneNumberError) && <div style={{color:'red'}}>{ email.phoneNumberErrorText}</div>}
+            {(phoneNumber.isDirty && phoneNumber.isEmpty) && <div style={{color:'red'}}>{phoneNumber.isEmptyText}</div>}    
             
        </div>
     );
