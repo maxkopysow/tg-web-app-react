@@ -60,8 +60,6 @@ const useValidation =(value,validations) =>{
       emailError,
       inputValid,
       isEmptyText,
-      minLengthErrorText,
-      maxLengthErrorText,
       emailErrorText,
       
    }
