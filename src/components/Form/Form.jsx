@@ -54,7 +54,7 @@ const useValidation =(value,validations) =>{
                regCompanyName.test(String(value)) ? setCompanyNameError(false): setCompanyNameError(true)
                break;
             case 'isCompanyINN':
-               regINN.test(String(value)) ? setCompanyINNError(false): setCompanyINNError(true)
+               regINN.test(String(value)) ? setCompanyINNError(true): setCompanyINNError(false)
                break;
             case 'isPhoneNumber':
                regPhoneNumber.test(String(value)) ? setPhoneNumberError(false): setPhoneNumberError(true)
