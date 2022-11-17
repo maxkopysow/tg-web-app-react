@@ -22,8 +22,8 @@ const useValidation =(value,validations) =>{
   const emailErrorText = "Некорректно введен email";
   const FIOErrorText = "Некорректно введено ФИО";
   const companyNameErrorText ="Некорректно введено название компании";
-  const companyINNErrorText = "";
-  const phoneNumberErrorText = "";
+  const companyINNErrorText = "Некорректно введен ИНН";
+  const phoneNumberErrorText = "Некорректно введен ИНН";;
   
   
   const regEmail =/^(?=.{1,254}$)(?=.{1,64}@)[-!#$%&'*+/0-9=?A-Z^_`a-z{|}~]+(\.[-!#$%&'*+/0-9=?A-Z^_`a-z{|}~]+)*@[A-Za-z0-9]([A-Za-z0-9-]{0,61}[A-Za-z0-9])?(\.[A-Za-z0-9]([A-Za-z0-9-]{0,64}[A-Za-z0-9])?)*$/;
@@ -48,16 +48,16 @@ const useValidation =(value,validations) =>{
                regEmail.test(String(value).toLowerCase()) ? setEmailError(false) : setEmailError(true)
                break;
             case 'isFIO':
-               regFIO.test(String(value)) ? setFIOError(false): setFIOError(true)
+               regFIO.test(String(value).toLowerCase()) ? setFIOError(false): setFIOError(true)
                break;
             case 'isCompanyName':
-               regCompanyName.test(String(value)) ? setCompanyNameError(false): setCompanyNameError(true)
+               regCompanyName.test(String(value).toLowerCase()) ? setCompanyNameError(false): setCompanyNameError(true)
                break;
             case 'isCompanyINN':
-               regINN.test(String(value)) ? setCompanyINNError(true): setCompanyINNError(false)
+               regINN.test(String(value).toLowerCase()) ? setCompanyINNError(false): setCompanyINNError(true)
                break;
             case 'isPhoneNumber':
-               regPhoneNumber.test(String(value)) ? setPhoneNumberError(false): setPhoneNumberError(true)
+               regPhoneNumber.test(String(value).toLowerCase()) ? setPhoneNumberError(false): setPhoneNumberError(true)
                break;
              default:
                break;
@@ -102,7 +102,6 @@ const useInput = (InitialValue, validations) => {
    const valid =   useValidation(value,validations)
    const onChange = (e) =>{
       setValue(e.target.value);
-
    } 
    const onBlur = (e) =>{
       setDirty(true);
