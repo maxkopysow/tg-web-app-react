@@ -159,15 +159,12 @@ const Form = () => {
 
 
    useEffect(() =>{
-      for (const val in inputValues){
-         if(!val.inputValid){
-            tg.MainButton.hide();
-            break;
-         }else{
-            tg.MainButton.show();
-         }
+      if(!inputValid){
+         tg.MainButton.hide();
+      }else{
+         tg.MainButton.show();
       }
-   }, [inputValues])
+   }, [inputValid])
 
    return (
        <div className={'form'}>
