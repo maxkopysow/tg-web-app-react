@@ -84,11 +84,11 @@ const useInput = (InitialValue, validations) => {
 
 
 const Form = () => {
+   const email =  useInput('', {isEmpty:true , minLength:3, isEmail:true});
+   const FIO =  useInput('', {isEmpty:true , minLength:3, isFIO:true});
+   
 
-   const [FIO, setFIO] = useState('', {isEmpty:true , minLength:3, isFIO:true});
-   // const [companyName, setCompanyName] = useState('');
-   // const [companyINN, setCompanyINN] = useState('');
-   const [email, setEmail] = useState('',{isEmpty:true , minLength:3, isEmail:true});
+
    // const [phoneNumber, setPhoneNumber] = useState('');
    // const {tg, queryId, chatId, user} = useTelegram();
    const inputValues = [FIO, email];
@@ -136,7 +136,7 @@ const Form = () => {
             tg.MainButton.show();
          }
       }
-   }, [FIO,companyName,companyINN,email,phoneNumber, inputValues])
+   }, [inputValues])
 
    
 
@@ -147,18 +147,7 @@ const Form = () => {
    //    if(e.target.value)
    //    setFIO(e.target.value);
    // }
-   // const onChangeCompanyName = (e) => {
-   //    setCompanyName(e.target.value);
-   // }
-   // const onChangeCompanyINN = (e) => {
-   //    setCompanyINN(e.target.value);
-   // }
-   // const onChangeEmail = (e) => {
-   //    setEmail(e.target.value);
-   // }
-   // const onChangePhoneNumber = (e) => {
-   //    setPhoneNumber(e.target.value);
-   // }
+
    return (
        <div className={'form'}>
             <h3>Введите ваши данные</h3>
