@@ -31,7 +31,7 @@ const Form = () => {
          "phoneNumber":phoneNumber.value,
       }
      
-      fetch('http://158.160.14.193:3000/web-data', {  // Enter your IP address here
+      fetch('http://localhost/web-data', {  // Enter your IP address here
          headers:{"Content-Type":"application/json"},
          method: 'POST', 
          body: JSON.stringify() // body data type must match "Content-Type" header
@@ -43,7 +43,6 @@ const Form = () => {
       tg.onEvent('mainButtonClicked',onSendData);
       return ()=>{
          tg.offEvent('mainButtonClicked',onSendData);
-         tg.MainButton.hide();
       }
    }, [onSendData])
 
