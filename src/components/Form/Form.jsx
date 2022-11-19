@@ -16,42 +16,20 @@ const Form = () => {
    const phoneNumber = useInput('', {isEmpty:true, isPhoneNumber:true});
   
    const {tg, queryId, chatId, user} = useTelegram();
-   
+
    const onSendData = useCallback(()=>{
+      var fullName = FIO.value.split(' ');
       const data = {
          "queryId":queryId,
-            "context": {
-               "responsible_for_working_with_partners": [
-                  "00000000-0000-0000-0000-000000000000"
-               ],
-               "email": [
-                  {
-                  "type": "main",
-                  "email": "mail@example.com"
-                  }
-               ],
-               "full_name": {
-                  "lastname": "Иванов",
-                  "middlename": "Сидорович",
-                  "firstname": "Пётр1"
-               },
-               "company_name": "example",
-               "company_inn": "9876543212",
-               "nomer_telefona": "example",
-               "phone_number": [
-                  {
-                  "type": "main",
-                  "tel": "79120284114"
-                  }
-               ],
-               "teg_telegram": "example",
-               "vneshnii_polzovatel": [
-                  "00000000-0000-0000-0000-000000000000"
-               ],
-               "e_mail": "kopysovmm@gmail.com",
-               "__target": "example"
-            }
-          }
+         "userName": user?.username,
+         "firstname": fullName[0],
+         "middlename":fullName[1],
+         "lastname": fullName[2],
+         "email": email.value,
+         "companyName":companyName.value,
+         "companyINN":companyINN.value,
+         "phoneNumber":phoneNumber.value,
+      }
      
       fetch('http://158.160.14.193:3000/web-data', {  // Enter your IP address here
          headers:{"Content-Type":"application/json"},
