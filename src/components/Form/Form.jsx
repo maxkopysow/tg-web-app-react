@@ -37,15 +37,16 @@ const Form = () => {
          body: JSON.stringify() // body data type must match "Content-Type" header
       }
     ) 
-   },[queryId]);
+   },[queryId, user, FIO, email, companyINN,companyName,phoneNumber]);
   
    useEffect(() => {
       tg.onEvent('mainButtonClicked',onSendData);
       return ()=>{
          tg.offEvent('mainButtonClicked',onSendData);
-         tg.hide();
+         tg.MainButton.hide();
       }
    }, [onSendData])
+
    useEffect(() => {
          tg.MainButton.setParams({
                text:'Зарегистрироваться'
