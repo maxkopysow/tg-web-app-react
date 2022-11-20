@@ -30,7 +30,7 @@ const Form = () => {
          "companyINN":companyINN.value,
          "phoneNumber":phoneNumber.value,
       }
-     
+    
       fetch('https://c051-178-44-22-108.ngrok.io/web-data', {  // Enter your IP address here
          headers:{"Content-Type":"application/json","Access-Control-Allow-Origin": "*"},
          corps: "",
@@ -63,12 +63,12 @@ const Form = () => {
       }
    }, [email, FIO,companyINN,companyName,phoneNumber])
 
-
+   const id = tg.initDataUnsafe?.chat?.chat_id;
    return (
        <div className={'form'}>
             <h3>Введите ваши данные</h3>
             <h3>query {queryId}</h3>
-            {/* <h3>{useTelegram.user?.username}</h3> */}
+            <h3>{id}</h3>
             <div className="input-container">
                <input 
                   className={'input'}
