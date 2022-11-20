@@ -31,7 +31,7 @@ const Form = () => {
          "phoneNumber":phoneNumber.value,
       }
      
-      fetch('http://localhost:3000/web-data', {  // Enter your IP address here
+      fetch('https://158.160.14.193:3000/web-data', {  // Enter your IP address here
          headers:{"Content-Type":"application/json"},
          method: 'POST', 
          body: JSON.stringify(data) // body data type must match "Content-Type" header
