@@ -38,7 +38,7 @@ const Form = () => {
    //       body: JSON.stringify(data) // body data type must match "Content-Type" header
    //    }
    //  ) 
-    tg.sendData(data);
+    tg.sendData(JSON.stringify(data));
     tg.MainButton.hide();
    },[queryId, user, FIO, email, companyINN,companyName,phoneNumber]);
   
