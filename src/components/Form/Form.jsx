@@ -31,7 +31,7 @@ const Form = () => {
          "phoneNumber":phoneNumber.value,
       }
      
-      fetch('http://158.160.14.193:3000/web-data', {  // Enter your IP address here
+      fetch('https://c051-178-44-22-108.ngrok.io/web-data', {  // Enter your IP address here
          headers:{"Content-Type":"application/json","Access-Control-Allow-Origin": "*"},
          corps: "",
          method: 'POST', 
