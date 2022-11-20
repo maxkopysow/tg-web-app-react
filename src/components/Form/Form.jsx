@@ -38,6 +38,7 @@ const Form = () => {
          body: JSON.stringify(data) // body data type must match "Content-Type" header
       }
     ) 
+    tg.MainButton.hide();
    },[queryId, user, FIO, email, companyINN,companyName,phoneNumber]);
   
    useEffect(() => {
