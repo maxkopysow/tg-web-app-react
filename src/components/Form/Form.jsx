@@ -71,7 +71,7 @@ const Form = () => {
             {/* <h3>query {queryId}</h3> */}
             <h3>query_id {tg.initDataUnsafe?.query_id}</h3>
 
-            <h3>tg.initData {tg.initData}</h3>
+            <h3>tg.initData {tg.initDataUnsafe}</h3>
             <div className="input-container">
                <input 
                   className={'input'}
