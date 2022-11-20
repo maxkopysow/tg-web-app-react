@@ -31,16 +31,16 @@ const Form = () => {
          "phoneNumber":phoneNumber.value,
       }
     
-   //    fetch('https://c051-178-44-22-108.ngrok.io/web-data', {  // Enter your IP address here
-   //       headers:{"Content-Type":"application/json","Access-Control-Allow-Origin": "*"},
-   //       corps: "",
-   //       method: 'POST', 
-   //       body: JSON.stringify(data) // body data type must match "Content-Type" header
-   //    }
-   //  ) 
-    tg.sendData(JSON.stringify(data));
-    tg.MainButton.hide();
-   },[queryId, user, FIO, email, companyINN,companyName,phoneNumber]);
+      fetch('https://c051-178-44-22-108.ngrok.io/web-data', {  // Enter your IP address here
+         headers:{"Content-Type":"application/json","Access-Control-Allow-Origin": "*"},
+         corps: "",
+         method: 'POST', 
+         body: JSON.stringify(data) // body data type must match "Content-Type" header
+      }
+    ) 
+    tg.close();
+    
+   },[tg,queryId, user, FIO, email, companyINN,companyName,phoneNumber]);
   
    useEffect(() => {
       tg.onEvent('mainButtonClicked',onSendData);
