@@ -29,7 +29,8 @@ const Form = () => {
          "companyINN":companyINN.value,
          "phoneNumber":phoneNumber.value,
       }
-    tg.sendData(JSON.stringify(data));    
+    tg.sendData(JSON.stringify(data));
+    tg.close();    
    },[tg,FIO, email, companyINN,companyName,phoneNumber]);
   
    useEffect(() => {
