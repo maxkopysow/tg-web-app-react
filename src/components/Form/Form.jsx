@@ -69,6 +69,7 @@ const Form = () => {
             <h3>Введите ваши данные</h3>
             <h3>query {queryId}</h3>
             <h3>{id}</h3>
+            <h3>{tg.initData}</h3>
             <div className="input-container">
                <input 
                   className={'input'}
