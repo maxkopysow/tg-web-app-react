@@ -15,12 +15,11 @@ const Form = () => {
    const companyINN = useInput('', {isEmpty:true, isCompanyINN:true});
    const phoneNumber = useInput('', {isEmpty:true, isPhoneNumber:true});
   
-   const {tg, queryId, chatId, user} = useTelegram();
+   const {tg,user} = useTelegram();
 
    const onSendData = useCallback(()=>{
       var fullName = FIO.value.split(' ');
       const data = {
-         "queryId":queryId,
          "userName": user?.username,
          "firstname": fullName[0],
          "middlename":fullName[1],
@@ -30,17 +29,8 @@ const Form = () => {
          "companyINN":companyINN.value,
          "phoneNumber":phoneNumber.value,
       }
-    
-      fetch('https://c051-178-44-22-108.ngrok.io/web-data', {  // Enter your IP address here
-         headers:{"Content-Type":"application/json","Access-Control-Allow-Origin": "*"},
-         corps: "",
-         method: 'POST', 
-         body: JSON.stringify(data) // body data type must match "Content-Type" header
-      }
-    ) 
-    tg.close();
-    
-   },[tg,queryId, user, FIO, email, companyINN,companyName,phoneNumber]);
+    tg.sendData(JSON.stringify(data));    
+   },[tg,FIO, email, companyINN,companyName,phoneNumber]);
   
    useEffect(() => {
       tg.onEvent('mainButtonClicked',onSendData);
@@ -68,10 +58,6 @@ const Form = () => {
    return (
        <div className={'form'}>
             <h3>Введите ваши данные</h3>
-            {/* <h3>query {queryId}</h3> */}
-            <h3>query_id {tg.initDataUnsafe?.query_id}</h3>
-
-      
             <div className="input-container">
                <input 
                   className={'input'}
