@@ -31,13 +31,14 @@ const Form = () => {
          "phoneNumber":phoneNumber.value,
       }
     
-      fetch('https://c051-178-44-22-108.ngrok.io/web-data', {  // Enter your IP address here
-         headers:{"Content-Type":"application/json","Access-Control-Allow-Origin": "*"},
-         corps: "",
-         method: 'POST', 
-         body: JSON.stringify(data) // body data type must match "Content-Type" header
-      }
-    ) 
+   //    fetch('https://c051-178-44-22-108.ngrok.io/web-data', {  // Enter your IP address here
+   //       headers:{"Content-Type":"application/json","Access-Control-Allow-Origin": "*"},
+   //       corps: "",
+   //       method: 'POST', 
+   //       body: JSON.stringify(data) // body data type must match "Content-Type" header
+   //    }
+   //  ) 
+   // tg.sendData(data);
     tg.MainButton.hide();
    },[queryId, user, FIO, email, companyINN,companyName,phoneNumber]);
   
@@ -67,9 +68,10 @@ const Form = () => {
    return (
        <div className={'form'}>
             <h3>Введите ваши данные</h3>
-            <h3>query {queryId}</h3>
-            <h3>{id}</h3>
-            <h3>{tg.initData}</h3>
+            {/* <h3>query {queryId}</h3> */}
+            <h3>query_id {tg.initDataUnsafe?.query_id}</h3>
+
+            <h3>tg.initData {tg.initData}</h3>
             <div className="input-container">
                <input 
                   className={'input'}
