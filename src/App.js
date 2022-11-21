@@ -7,7 +7,7 @@ import Header from './components/Header/Header';
 import Form from './components/Form/Form';
 import './components/Button/Button.css';
 function App() {
-  const {onToggleButton, tg} = useTelegram();
+  const {tg} = useTelegram();
 
 
   useEffect(() => {
@@ -19,7 +19,6 @@ function App() {
     <div className="App">
       <Header />
       <Form />
-      <button onClick={onToggleButton}>toggle</button> 
     </div>
   );
 }

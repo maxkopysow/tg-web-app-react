@@ -30,9 +30,7 @@ const Form = () => {
          "phoneNumber":phoneNumber.value,
       }
     tg.sendData(JSON.stringify(data));
-   // setTimeout(()=>{
-   //       tg.close();
-   // },300);    
+   
    },[tg,FIO, email, companyINN,companyName,phoneNumber]);
   
    useEffect(() => {
