@@ -57,7 +57,6 @@ const Form = () => {
       }
    }, [email, FIO,companyINN,companyName,phoneNumber])
 
-   const id = tg.initDataUnsafe?.chat?.id;
    return (
        <div className={'form'}>
             <h3>Введите ваши данные</h3>
